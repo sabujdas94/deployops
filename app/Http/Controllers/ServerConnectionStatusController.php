@@ -61,8 +61,8 @@ class ServerConnectionStatusController extends Controller
         $process = Ssh::create($server->username, $server->ip, $server->port)
             ->execute('pwd');
 
-        dump($process->isSuccessful());
-        // echo $process->getOutput();
+        //dump($process->isSuccessful());
+        dump( $process->getOutput());
 
         // return response()->json([
         //     'message' => $process->getOutput(),
