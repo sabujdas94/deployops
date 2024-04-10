@@ -16,9 +16,12 @@ class Servers extends Model
         'username',
         'passkey',
         'key_type',
+        'last_check',
+        'status',
     ];
 
     protected $casts = [
-        'passkey' => 'encrypted'
+        'passkey' => 'encrypted',
+        'last_check' => 'datetime'
     ];
 }

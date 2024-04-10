@@ -46,8 +46,8 @@
                             <td>{{ $i }}</td>
                             <td>{{$server->name}}</td>
                             <td></td>
-                            <td><span><a href="#"><i class="fa fa-circle text-success"></i> Online</a></span></td>
-                            <td></td>
+                            <td><span><a href="#"><i class="fa fa-circle text-{{$server->status === 'connected' ? 'success' : 'danger'}}"></i> {{$server->status}}</a></span></td>
+                            <td>{{ $server->last_check->format('Y-m-d h:m A') }}</td>
                             <td></td>
                         </tr>
                         @php
