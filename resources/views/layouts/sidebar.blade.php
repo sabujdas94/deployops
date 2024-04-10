@@ -6,7 +6,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{asset('adminlte/img/avatar5.png')}}" class="img-circle" alt="User Image">
+                <img src="{{ asset('adminlte/img/avatar5.png') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>{{ Auth::user()->name }}</p>
@@ -30,10 +30,13 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">Menus</li>
+            <li class="header">MAIN NAVIGATION</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active">
-                <a href="#"><i class="fa fa-cloud"></i> <span>Servers</span></a>
+            <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+            </li>
+            <li class="{{ request()->is(['servers', 'servers/*']) ? 'active' : '' }}">
+                <a href="{{ route('servers.index') }}"><i class="fa fa-cloud"></i> <span>Servers</span></a>
             </li>
         </ul>
         <!-- /.sidebar-menu -->

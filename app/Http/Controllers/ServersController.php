@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class ServersController extends Controller
 {
+    public function index()
+    {
+        $servers = Servers::query()
+            ->paginate(20);
+
+        return view('server.index', compact('servers'));
+    }
     public function store(ServerStoreRequest $request)
     {
         try {

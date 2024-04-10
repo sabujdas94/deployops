@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Servers;
+use DivineOmega\SSHConnection\SSHConnection;
 use Illuminate\Http\Request;
 use Spatie\Ssh\Ssh;
 use Symfony\Component\Process\Process;
@@ -17,56 +18,11 @@ class ServerConnectionStatusController extends Controller
     {
         $server = Servers::find($server);
 
+        $error = \App\Helpers\Ssh::checkConnection($server);
 
-        // // SSH connection parameters
-        // $host = $server->ip;
-        // $username = $server->username;
-        // $password = $server->passkey; // or use SSH key instead
-        // $port = $server->port; // or use SSH key instead
-
-        // // SSH command to execute
-        // $command = sprintf(
-        //     'ssh %s@%s -p %s',
-        //    $username,
-        //    $host,
-        //     $port
-        // );
-
-        // $commandArray = [
-        //     'ssh',
-        //     $username .'@'. $host,
-        //     '-p',
-        //     $port
-        // ];
-
-        // // dd($command);
-
-        // // Create a new Process instance
-        // $process = new Process($commandArray);
-
-        // // Run the command
-        // $process->run();
-
-        // // Check if the process was successful
-        // if (!$process->isSuccessful()) {
-        //     throw new ProcessFailedException($process);
-        // }
-
-        // // Output of the command
-        // dump($process->getOutput());
-
-
-
-
-        $process = Ssh::create($server->username, $server->ip, $server->port)
-        ->disablePasswordAuthentication()
-            ->execute('pwd');
-
-        //dump($process->isSuccessful());
-        dump( $process->getOutput());
-
-        // return response()->json([
-        //     'message' => $process->getOutput(),
-        // ]);
+        return response()->json([
+            'status' => $error === '' ? "Connected" : 'Disconnected',
+            'message' => $error,
+        ]);
     }
 }
