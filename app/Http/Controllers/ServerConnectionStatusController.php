@@ -59,6 +59,7 @@ class ServerConnectionStatusController extends Controller
 
 
         $process = Ssh::create($server->username, $server->ip, $server->port)
+        ->disablePasswordAuthentication()
             ->execute('pwd');
 
         //dump($process->isSuccessful());
