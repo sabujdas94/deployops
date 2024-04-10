@@ -35,7 +35,7 @@ class ServerConnectionStatusController extends Controller
         // dd($command);
 
         // Create a new Process instance
-        $process = new Process([$command]);
+        $process = new Process(['ssh', '-v']);
 
         // Run the command
         $process->run();
