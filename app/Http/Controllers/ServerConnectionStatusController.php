@@ -32,10 +32,17 @@ class ServerConnectionStatusController extends Controller
             $port
         );
 
+        $commandArray = [
+            'ssh',
+            $username .'@'. $host,
+            '-p',
+            $port
+        ];
+
         // dd($command);
 
         // Create a new Process instance
-        $process = new Process(['ssh', '-v']);
+        $process = new Process($commandArray);
 
         // Run the command
         $process->run();
