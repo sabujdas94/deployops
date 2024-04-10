@@ -31,7 +31,7 @@ class ServersController extends Controller
     }
     public function show(int $id)
     {
-        $server = Servers::find($id);
+        $server = Servers::firstOrFail($id);
         return view('server.show', compact('server'));
     }
 
