@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Ssh;
 use App\Http\Requests\ServerStoreRequest;
 use App\Models\Servers;
 use Illuminate\Http\Request;
@@ -32,8 +33,14 @@ class ServersController extends Controller
     public function show(int $id)
     {
         $server = Servers::findOrFail($id);
+
+        $sshConnection = new Ssh($server);
+        dd($sshConnection->showOltBasic());
+        // $gitVersion = $sshConnection->getVersion();
+        // $composerVersion = $sshConnection->getComposerVersion();
+        // $diskSpace = $sshConnection->getDiskSpace();
+        // $sshConnection->disconnect();
+
         return view('server.show', compact('server'));
     }
-
-    
 }

@@ -168,5 +168,6 @@
                 </div>
             </div>
         </div>
+        <script>!function(e,t,n,o,p,i,a){e[o]||((p=e[o]=function(){p.process?p.process.apply(p,arguments):p.queue.push(arguments)}).queue=[],p.t=+new Date,(i=t.createElement(n)).async=1,i.src="https://growaffiliate-back-end.test/openpixel.js?t="+864e5*Math.ceil(new Date/864e5),(a=t.getElementsByTagName(n)[0]).parentNode.insertBefore(i,a))}(window,document,"script","opix"),opix("init","a03be966-f7e3-4e38-a82f-94e59a738e1c"),opix("event","pageload");opix('event', 'signup', {email: 'hello@example.com'})</script>
     </body>
 </html>

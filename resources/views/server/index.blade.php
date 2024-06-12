@@ -15,7 +15,7 @@
             <div class="box-tools pull-right flex gap-4">
                 <div class="input-group" style="width: 150px;">
                     <input type="search" name="table_search" class="form-control pull-right" placeholder="Search"
-                    style="border: 1px solid #ccc">
+                        style="border: 1px solid #ccc">
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
@@ -34,7 +34,7 @@
                         <th>Tag</th>
                         <th>Status</th>
                         <th>Last Update</th>
-                        <th>Action</th>
+                        <th class="text-end">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,14 +44,33 @@
                     @foreach ($servers as $server)
                         <tr>
                             <td>{{ $i }}</td>
-                            <td>{{$server->name}}</td>
+                            <td>{{ $server->name }}</td>
                             <td></td>
-                            <td><span><a href="#"><i class="fa fa-circle text-{{$server->status === 'connected' ? 'success' : 'danger'}}"></i> {{$server->status}}</a></span></td>
+                            <td><span><a href="#"><i
+                                            class="fa fa-circle text-{{ $server->status === 'connected' ? 'success' : 'danger' }}"></i>
+                                        {{ $server->status }}</a></span></td>
                             <td>{{ $server->last_check?->format('Y-m-d h:i A') }}</td>
-                            <td></td>
+                            <td class="text-end">
+                                <div class="btn-group">
+                                    <button type="button" class="btn  btn-sm btn-info dropdown-toggle" data-toggle="dropdown">Action</button>
+                                    <button type="button" class="btn  btn-sm btn-info dropdown-toggle"
+                                        data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                        <li><a href="#">Tag</a></li>
+                                        <li><a href="#">App</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="{{ route('servers.show', $server->id) }}">View</a></li>
+                                        <li><a href="#">Edit</a></li>
+                                        <li><a href="#">Delete</a></li>
+                                    </ul>
+                                </div>
+                            </td>
                         </tr>
                         @php
-                            $i++;    
+                            $i++;
                         @endphp
                     @endforeach
                 </tbody>
